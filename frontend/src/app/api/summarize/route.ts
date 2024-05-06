@@ -8,6 +8,9 @@ import { fetchTranscript } from "@/lib/youtube-transcript";
 import { getUserMeLoader } from "@/data/services/get-user-me-loader";
 import { getAuthToken } from "@/data/services/get-token";
 
+export const maxDuration = 60; 
+export const dynamic = 'force-dynamic'
+
 function transformData(data: any[]) {
   let text = "";
 
@@ -85,8 +88,6 @@ export async function POST(req: NextRequest) {
       }),
       { status: 402 }
     );
-
-
 
 
   const body = await req.json();
