@@ -11,14 +11,10 @@ import {
 const config = {
   maxAge: 60 * 60 * 24 * 7, // 1 week
   path: "/",
-  // domain: process.env.HOST ?? "localhost",
+  domain: process.env.HOST ?? "localhost",
   httpOnly: true,
-  // secure: process.env.NODE_ENV === "production",
+  secure: process.env.NODE_ENV === "production",
 };
-
-console.log(config, "config");
-
-
 
 const schemaRegister = z.object({
   username: z.string().min(3).max(20, {
@@ -125,7 +121,7 @@ export async function loginUserAction(prevState: any, formData: FormData) {
     };
   }
 
-  cookies().set("jwt", responseData.jwt);
+  cookies().set("jwt", responseData.jwt, config);
   redirect("/dashboard");
 }
 
